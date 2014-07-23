@@ -1,0 +1,106 @@
+{
+    "type" : "app",
+
+    "info" : {
+        "package"         : "##pkgname##",
+        "name"            : "Shaarli",
+        "tagline"         : "##pkgdesc##",
+        "description"     : "##description##",
+
+        "developer"       : "##developer##",
+        "maintainer"      : "##maintainer##",
+
+        "upstreamversion" : "##pkgver##",
+        "packageversion"  : "##pkgver##-##pkgrel##",
+
+        "licenses" : [
+            "##license##"
+        ]
+    },
+
+    "roles" : {
+        "apache2" : {
+            "defaultcontext" : "/shaarli",
+            "depends" : [
+                "php",
+                "php-apache",
+                "perl-digest-sha1"
+            ],
+            "apache2modules" : [
+                "php5",
+                "rewrite"
+            ],
+            "appconfigitems" : [
+                {
+                    "type" : "directorytree",
+                    "names" : [
+                        "images",
+                        "inc",
+                        "index.php",
+                        "tpl"
+                    ],
+                    "source" : "web/$1"
+                },
+                {
+                    "type" : "directory",
+                    "names" : [
+                        "cache",
+                        "tmp",
+                        "pagecache"
+                    ],
+                    "uname" : "${apache2.uname}",
+                    "gname" : "${apache2.gname}",
+                    "permissions" : "705"
+                },
+                {
+                    "type" : "directory",
+                    "name" : "data",
+                    "uname" : "${apache2.uname}",
+                    "gname" : "${apache2.gname}",
+                    "permissions" : "705"
+                },
+                {
+                    "type"   : "file",
+                    "name"   : "data/datastore.php",
+                    "source" : "tmpl/datastore.php.tmpl",
+                    "uname" : "${apache2.uname}",
+                    "gname" : "${apache2.gname}",
+                    "retentionbucket" : "datastore",
+                    "retentionpolicy" : "keep"
+                },
+                {
+                    "type" : "file",
+                    "names" : [
+                        "cache/.htaccess",
+                        "data/.htaccess"
+                    ],
+                    "source" : "tmpl/deny-htaccess"
+                },
+                {
+                    "type" : "perlscript",
+                    "source" : "bin/generate-config.pl"
+                },
+                {
+                    "type" : "perlscript",
+                    "source" : "bin/fix-permissions.pl"
+                }
+            ]
+        }
+    },
+    "customizationpoints" : {
+        "title" : {
+            "type"        : "string",
+            "required"    : false,
+            "default" : {
+                "value" : "My links"
+            }
+        },
+        "timezone" : {
+            "type"        : "string",
+            "required"    : false,
+            "default" : {
+                "value" : "UTC"
+            }
+        }
+    }
+}

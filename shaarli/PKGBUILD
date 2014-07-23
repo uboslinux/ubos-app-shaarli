@@ -1,0 +1,50 @@
+developer=http://sebsauvage.net/
+maintainer=http://indiebox.net/
+pkgname=$(basename $(pwd))
+pkgver=0.0.41beta
+pkgrel=3
+pkgdesc="Your Own URL Shortener"
+arch=('any')
+url=${developer}
+license=("custom:zlib")
+groups=()
+depends=()
+backup=()
+source=("git+https://github.com/sebsauvage/Shaarli.git")
+options=('!strip')
+md5sums=('SKIP')
+# from http://stackoverflow.com/questions/1251999/sed-how-can-i-replace-a-newline-n
+_parameterize=$(cat <<END
+    s!##pkgname##!$pkgname!g;
+    s/##pkgdesc##/$pkgdesc/g;
+    s!##developer##!$developer!g;
+    s!##maintainer##!$maintainer!g;
+    s!##pkgver##!$pkgver!g;
+    s!##pkgrel##!$pkgrel!g;
+    s!##license##!$license!g;
+    s!##description##!$description!g;
+END
+)
+
+package() {
+# Manifest
+    mkdir -p $pkgdir/var/lib/indiebox/manifests
+    perl -pe "$_parameterize" $startdir/indiebox-manifest.json > $pkgdir/var/lib/indiebox/manifests/${pkgname}.json
+    chmod 0644 $pkgdir/var/lib/indiebox/manifests/${pkgname}.json
+
+# Icons
+    mkdir -p $pkgdir/srv/http/_appicons/$pkgname
+    install -m644 $startdir/appicons/{72x72,144x144}.png $pkgdir/srv/http/_appicons/$pkgname/
+
+# Templates
+    mkdir -p $pkgdir/usr/share/${pkgname}/tmpl
+    install -m644 $startdir/tmpl/deny-htaccess $pkgdir/usr/share/${pkgname}/tmpl/
+    install -m644 $startdir/tmpl/datastore.php.tmpl $pkgdir/usr/share/${pkgname}/tmpl/
+
+# Code
+    mkdir -p $pkgdir/usr/share/${pkgname}/bin
+    install -m755 $startdir/bin/generate-config.pl $pkgdir/usr/share/${pkgname}/bin/
+    install -m755 $startdir/bin/fix-permissions.pl $pkgdir/usr/share/${pkgname}/bin/
+
+    rsync --quiet --archive --exclude '.git*' $startdir/src/Shaarli/* $pkgdir/usr/share/${pkgname}/web
+}
