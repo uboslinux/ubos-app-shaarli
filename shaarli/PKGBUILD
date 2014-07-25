@@ -2,7 +2,7 @@ developer=http://sebsauvage.net/
 maintainer=http://indiebox.net/
 pkgname=$(basename $(pwd))
 pkgver=0.0.41beta
-pkgrel=3
+pkgrel=4
 pkgdesc="Your Own URL Shortener"
 arch=('any')
 url=${developer}
@@ -31,6 +31,10 @@ package() {
     mkdir -p $pkgdir/var/lib/indiebox/manifests
     perl -pe "$_parameterize" $startdir/indiebox-manifest.json > $pkgdir/var/lib/indiebox/manifests/${pkgname}.json
     chmod 0644 $pkgdir/var/lib/indiebox/manifests/${pkgname}.json
+
+# License
+    mkdir -p $pkgdir/usr/share/licenses/${pkgname}
+    install -m644 $startdir/COPYING $pkgdir/usr/share/licenses/${pkgname}/
 
 # Icons
     mkdir -p $pkgdir/srv/http/_appicons/$pkgname
