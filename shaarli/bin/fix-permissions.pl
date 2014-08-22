@@ -5,7 +5,7 @@
 
 use strict;
 
-use IndieBox::Utils;
+use UBOS::Utils;
 use POSIX;
 
 
@@ -15,8 +15,8 @@ if( 'install' eq $operation ) {
     my $apacheUname = $config->getResolve( 'apache2.uname' );
     my $apacheGname = $config->getResolve( 'apache2.gname' );
 
-    my $apacheUid = IndieBox::Utils::getUid( $apacheUname );
-    my $apacheGid = IndieBox::Utils::getGid( $apacheGname );
+    my $apacheUid = UBOS::Utils::getUid( $apacheUname );
+    my $apacheGid = UBOS::Utils::getGid( $apacheGname );
     
     chown $apacheUid, $apacheGid, $dir;
 }

@@ -5,8 +5,8 @@
 
 use strict;
 
-use Digest::SHA1    qw( sha1_hex );
-use IndieBox::Utils qw( saveFile slurpFile );
+use Digest::SHA1 qw( sha1_hex );
+use UBOS::Utils  qw( saveFile slurpFile );
 use POSIX;
 
 my $dir      = $config->getResolve( 'appconfig.apache2.dir' );
@@ -21,7 +21,7 @@ if( 'install' eq $operation ) {
     my $password = $config->getResolve( 'site.admin.credential' );
     my $title    = $config->getResolve( 'installable.customizationpoints.title.value' );
     my $timezone = $config->getResolve( 'installable.customizationpoints.timezone.value' );
-    my $salt     = IndieBox::Utils::randomHex( 40 );
+    my $salt     = UBOS::Utils::randomHex( 40 );
     my $hash     = sha1_hex( $password . $login . $salt );
     
     my $confContent = <<END;
@@ -43,12 +43,12 @@ date_default_timezone_set(\$GLOBALS['timezone']);
 ?>
 END
 
-    IndieBox::Utils::saveFile( $confFile, $confContent, 0644, $apacheUname, $apacheGname );
+    UBOS::Utils::saveFile( $confFile, $confContent, 0644, $apacheUname, $apacheGname );
 }
 
 if( 'uninstall' eq $operation ) {
     if( -e $confFile ) {
-        IndieBox::Utils::deleteFile( $confFile )
+        UBOS::Utils::deleteFile( $confFile )
     }
 }
 1;
