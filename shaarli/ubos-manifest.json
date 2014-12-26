@@ -33,14 +33,16 @@
                     ],
                     "uname" : "${apache2.uname}",
                     "gname" : "${apache2.gname}",
-                    "permissions" : "705"
+                    "dirpermissions"  : "755",
+                    "filepermissions" : "644"
                 },
                 {
                     "type" : "directory",
                     "name" : "data",
                     "uname" : "${apache2.uname}",
                     "gname" : "${apache2.gname}",
-                    "permissions" : "705"
+                    "dirpermissions"  : "755",
+                    "filepermissions" : "644"
                 },
                 {
                     "type"   : "file",
