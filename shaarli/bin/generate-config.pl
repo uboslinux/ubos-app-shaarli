@@ -4,6 +4,7 @@
 #
 
 use strict;
+use warnings;
 
 use Digest::SHA1 qw( sha1_hex );
 use UBOS::Utils  qw( saveFile slurpFile );
