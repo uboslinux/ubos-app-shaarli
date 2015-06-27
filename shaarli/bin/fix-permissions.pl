@@ -9,7 +9,7 @@ use UBOS::Utils;
 use POSIX;
 
 
-if( 'install' eq $operation ) {
+if( 'deploy' eq $operation ) {
     my $dir      = $config->getResolve( 'appconfig.apache2.dir' );
     
     my $apacheUname = $config->getResolve( 'apache2.uname' );

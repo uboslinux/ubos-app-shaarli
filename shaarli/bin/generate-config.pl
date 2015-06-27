@@ -17,7 +17,7 @@ my $confFile = "$dataDir/config.php";
 my $apacheUname = $config->getResolve( 'apache2.uname' );
 my $apacheGname = $config->getResolve( 'apache2.gname' );
 
-if( 'install' eq $operation ) {
+if( 'deploy' eq $operation ) {
     my $login    = $config->getResolve( 'site.admin.userid' );
     my $password = $config->getResolve( 'site.admin.credential' );
     my $title    = $config->getResolve( 'installable.customizationpoints.title.value' );
@@ -47,7 +47,7 @@ END
     UBOS::Utils::saveFile( $confFile, $confContent, 0644, $apacheUname, $apacheGname );
 }
 
-if( 'uninstall' eq $operation ) {
+if( 'undeploy' eq $operation ) {
     if( -e $confFile ) {
         UBOS::Utils::deleteFile( $confFile )
     }
