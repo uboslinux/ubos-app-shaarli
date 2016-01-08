@@ -10,7 +10,7 @@
                 "perl-digest-sha1"
             ],
             "apache2modules" : [
-                "php5",
+                "php7",
                 "rewrite"
             ],
             "appconfigitems" : [
