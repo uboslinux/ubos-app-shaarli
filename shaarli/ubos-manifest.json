@@ -17,9 +17,11 @@
                 {
                     "type" : "directorytree",
                     "names" : [
+                        "application"
                         "images",
                         "inc",
                         "index.php",
+                        "shaarli_version.php",
                         "tpl"
                     ],
                     "source" : "web/$1"
@@ -28,8 +30,8 @@
                     "type" : "directory",
                     "names" : [
                         "cache",
-                        "tmp",
-                        "pagecache"
+                        "pagecache",
+                        "tmp"
                     ],
                     "uname" : "${apache2.uname}",
                     "gname" : "${apache2.gname}",
