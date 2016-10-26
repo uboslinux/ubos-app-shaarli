@@ -22,7 +22,8 @@
                         "inc",
                         "index.php",
                         "shaarli_version.php",
-                        "tpl"
+                        "tpl",
+                        "vendor"
                     ],
                     "source" : "web/$1"
                 },

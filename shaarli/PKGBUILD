@@ -3,13 +3,13 @@ url=${developer}
 maintainer=http://indiecomputing.com/
 pkgname=$(basename $(pwd))
 pkgver=0.8.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Your own URL shortener"
 arch=('any')
 license=("custom:zlib")
-source=("shaarli-v${pkgver}.zip::https://github.com/shaarli/Shaarli/archive/v${pkgver}.zip")
+source=("https://github.com/shaarli/Shaarli/releases/download/v${pkgver}/shaarli-v${pkgver}-full.tar.gz")
 options=('!strip')
-sha512sums=('a0c4eb1e2a171d74b84258874b0af4ed6f12c0fbcb481736a223182fffe866cad50e9514bb8c847945da76a9dcc038b0b938dd734499715d6d323fa73734b9f5')
+sha512sums=('30d4ff2b7cc554d98ce847f75c440889665a46edece808037e85a49d8ab19be22e5324d0175a61276f042077b76f23d7161e9e98fd31eb4d857a8b2ee000b42a')
 
 package() {
 # Manifest
@@ -34,5 +34,5 @@ package() {
     install -m755 ${startdir}/bin/generate-config.pl ${pkgdir}/usr/share/${pkgname}/bin/
     install -m755 ${startdir}/bin/fix-permissions.pl ${pkgdir}/usr/share/${pkgname}/bin/
 
-    rsync --quiet --archive --exclude '.git*' ${startdir}/src/Shaarli-${pkgver}/* ${pkgdir}/usr/share/${pkgname}/web
+    rsync --quiet --archive --exclude '.git*' ${startdir}/src/Shaarli/* ${pkgdir}/usr/share/${pkgname}/web
 }
