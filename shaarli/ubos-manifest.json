@@ -21,6 +21,7 @@
                         "images",
                         "inc",
                         "index.php",
+                        "plugins",
                         "shaarli_version.php",
                         "tpl",
                         "vendor"
@@ -89,6 +90,14 @@
             "default" : {
                 "value" : "UTC"
             }
-        }
+        },
+        "salt" : {
+            "type"        : "string",
+            "required"    : false,
+            "private"     : true,
+            "default" : {
+                "expression" : "${randomHex(40)}"
+            }
+        },
     }
 }
