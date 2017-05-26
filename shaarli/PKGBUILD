@@ -2,14 +2,14 @@ developer=https://github.com/shaarli
 url=${developer}
 maintainer=http://indiecomputing.com/
 pkgname=$(basename $(pwd))
-pkgver=0.8.4
+pkgver=0.9.0
 pkgrel=1
 pkgdesc="Your own URL shortener"
 arch=('any')
 license=("custom:zlib")
 source=("https://github.com/shaarli/Shaarli/releases/download/v${pkgver}/shaarli-v${pkgver}-full.tar.gz")
 options=('!strip')
-sha512sums=('b3960099f308e29ab41763a044dbf3ea8f686181a2857e2c9a25158b7bf88cf71ed17f894e9803fbb1f3d05632780ea6797773ccee60606df5c6cf77144d75f6')
+sha512sums=('b90e0b9dbb9eb46c67fb57c27695e5c3956f675955040c0a6035e3ab795179e26dd3298f2dcd6661c0d413c723484d6c4e05e33ab0bb82f753cd7f46523981fc')
 
 package() {
 # Manifest
