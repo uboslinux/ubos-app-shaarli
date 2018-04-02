@@ -2,9 +2,9 @@ developer=https://github.com/shaarli
 url=${developer}
 maintainer=http://indiecomputing.com/
 pkgname=$(basename $(pwd))
-pkgver=0.9.5
+pkgver=0.9.6
 pkgrel=1
-pkgdesc="Your own URL shortener"
+pkgdesc="Personal, minimalist, super-fast, bookmarking service"
 arch=('any')
 license=("custom:${pkgname}")
 source=("https://github.com/shaarli/Shaarli/releases/download/v${pkgver}/shaarli-v${pkgver}-full.tar.gz")
@@ -14,30 +14,23 @@ sha512sums=('f3aa0e6206a16874c254d3ce279884295aafaf70513868bcc002e3b7641597bb43e
 
 package() {
 # Manifest
-    mkdir -p ${pkgdir}/var/lib/ubos/manifests
-    install -m0644 ${startdir}/ubos-manifest.json ${pkgdir}/var/lib/ubos/manifests/${pkgname}.json
+    install -D -m0644 ${startdir}/ubos-manifest.json ${pkgdir}/ubos/lib/ubos/manifests/${pkgname}.json
 
 # License
-    mkdir -p ${pkgdir}/usr/share/licenses/${pkgname}
-    install -m644 ${startdir}/COPYING ${pkgdir}/usr/share/licenses/${pkgname}/
+    install -D -m0644 ${startdir}/COPYING -t ${pkgdir}/ubos/share/licenses/${pkgname}/
 
 # Icons
-    mkdir -p ${pkgdir}/srv/http/_appicons/${pkgname}
-    install -m644 ${startdir}/appicons/{72x72,144x144}.png ${pkgdir}/srv/http/_appicons/${pkgname}/
+    install -D -m644 ${startdir}/appicons/{72x72,144x144}.png -t ${pkgdir}/ubos/http/_appicons/${pkgname}/
 
 # Templates
-    mkdir -p ${pkgdir}/usr/share/${pkgname}/tmpl
-    install -m644 ${startdir}/tmpl/deny-htaccess      ${pkgdir}/usr/share/${pkgname}/tmpl/
-    install -m644 ${startdir}/tmpl/datastore.php.tmpl ${pkgdir}/usr/share/${pkgname}/tmpl/
+    install -D -m644 ${startdir}/tmpl/deny-htaccess      -t ${pkgdir}/ubos/share/${pkgname}/tmpl/
+    install -D -m644 ${startdir}/tmpl/datastore.php.tmpl -t ${pkgdir}/ubos/share/${pkgname}/tmpl/
 
 # Code
-    mkdir -p ${pkgdir}/usr/share/${pkgname}/bin
-    install -m755 ${startdir}/bin/generate-config.pl ${pkgdir}/usr/share/${pkgname}/bin/
-    install -m755 ${startdir}/bin/fix-permissions.pl ${pkgdir}/usr/share/${pkgname}/bin/
+    install -D -m755 ${startdir}/bin/*.pl ${pkgdir}/ubos/share/${pkgname}/bin/
 
-    rsync --quiet --archive --exclude '.git*' ${startdir}/src/Shaarli/* ${pkgdir}/usr/share/${pkgname}/web
+    rsync --quiet --archive --exclude '.git*' ${startdir}/src/Shaarli/* ${pkgdir}/ubos/share/${pkgname}/web
 
 # License
-    mkdir -p ${pkgdir}/usr/share/licenses/${pkgname}
-    install -m644 ${srcdir}/Shaarli/COPYING -t ${pkgdir}/usr/share/licenses/${pkgname}/
+    install -D -m644 ${srcdir}/Shaarli/COPYING -t ${pkgdir}/usr/share/licenses/${pkgname}/
 }
