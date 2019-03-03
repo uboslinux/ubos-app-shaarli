@@ -19,6 +19,7 @@
                     "names" : [
                         "application",
                         "assets",
+                        "doc",
                         "inc",
                         "index.php",
                         "plugins",
