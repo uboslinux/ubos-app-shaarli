@@ -7,11 +7,15 @@
             "depends" : [
                 "php",
                 "php-apache",
+                "php-gd",
                 "perl-digest-sha1"
             ],
             "apache2modules" : [
                 "php7",
                 "rewrite"
+            ],
+            "phpmodules" : [
+                "gd",
             ],
             "appconfigitems" : [
                 {
