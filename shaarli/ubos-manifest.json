@@ -105,6 +105,7 @@
             "type"        : "string",
             "required"    : false,
             "private"     : true,
+            "internal"    : true,
             "default" : {
                 "expression" : "${randomHex(40)}"
             }
