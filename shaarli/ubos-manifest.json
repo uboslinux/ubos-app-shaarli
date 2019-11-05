@@ -8,7 +8,8 @@
                 "php",
                 "php-apache",
                 "php-gd",
-                "perl-digest-sha1"
+                "perl-digest-sha1",
+                "smtp-server"
             ],
             "apache2modules" : [
                 "php7",
@@ -77,6 +78,10 @@
                 {
                     "type" : "perlscript",
                     "source" : "bin/fix-permissions.pl"
+                },
+                {
+                    "type" : "systemd-service",
+                    "name" : "smtp-server@${appconfig.appconfigid}"
                 }
             ]
         }
