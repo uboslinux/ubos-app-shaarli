@@ -27,6 +27,7 @@
                         "doc",
                         "inc",
                         "index.php",
+                        "init.php",
                         "plugins",
                         "shaarli_version.php",
                         "tpl",
@@ -57,7 +58,7 @@
                 {
                     "type"   : "file",
                     "name"   : "data/datastore.php",
-                    "source" : "tmpl/datastore.php.tmpl",
+                    "source" : "tmpl/datastore.php",
                     "uname" : "${apache2.uname}",
                     "gname" : "${apache2.gname}",
                     "retentionbucket" : "datastore",

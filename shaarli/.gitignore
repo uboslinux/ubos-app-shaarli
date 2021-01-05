@@ -1,7 +1,4 @@
-shaarli-*-any.pkg.tar.xz
-shaarli-*-any.pkg.tar.xz.sig
-pkg/
-src/
+shaarli-*-any.pkg*
 Shaarli/
 shaarli-v*.zip
 shaarli-v*.tar.gz

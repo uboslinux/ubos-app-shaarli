@@ -2,7 +2,7 @@ developer=https://github.com/shaarli
 url=${developer}
 maintainer=http://indiecomputing.com/
 pkgname=$(basename $(pwd))
-pkgver=0.11.1
+pkgver=0.12.1
 pkgrel=1
 pkgdesc="Personal, minimalist, super-fast, bookmarking service"
 arch=('any')
@@ -13,7 +13,7 @@ depends=('perl-digest-sha1') # This dependency is only needed until
                              # is fixed
 releasepage=('https://github.com/shaarli/Shaarli/releases')
 options=('!strip')
-sha512sums=('40f0addeb2a8255639b235e816a42ea46b7c299ccf0748991f8c652658484ae0c154dde3618d54b04e4efe09134722f2c17e784fea14db45a8913df2b66da482')
+sha512sums=('3989823136ddbaaec7d2beb56b24c855e7b6ab38a1571374a572f2cdcb4a1a18cbc8595b05dfc483f67723c9067ca1d65f82a15085958bb28aa1ab0e2c79c0cd')
 
 package() {
 # Manifest
@@ -26,8 +26,8 @@ package() {
     install -D -m0644 ${startdir}/appicons/{72x72,144x144}.png -t ${pkgdir}/ubos/http/_appicons/${pkgname}/
 
 # Templates
-    install -D -m0644 ${startdir}/tmpl/deny-htaccess      -t ${pkgdir}/ubos/share/${pkgname}/tmpl/
-    install -D -m0644 ${startdir}/tmpl/datastore.php.tmpl -t ${pkgdir}/ubos/share/${pkgname}/tmpl/
+    install -D -m0644 ${startdir}/tmpl/deny-htaccess -t ${pkgdir}/ubos/share/${pkgname}/tmpl/
+    install -D -m0644 ${startdir}/tmpl/datastore.php -t ${pkgdir}/ubos/share/${pkgname}/tmpl/
 
 # Code
     install -D -m0755 ${startdir}/bin/*.pl -t ${pkgdir}/ubos/share/${pkgname}/bin/
