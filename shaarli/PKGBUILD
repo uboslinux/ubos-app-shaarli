@@ -3,7 +3,7 @@ url=${developer}
 maintainer=http://indiecomputing.com/
 pkgname=$(basename $(pwd))
 pkgver=0.12.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Personal, minimalist, super-fast, bookmarking service"
 arch=('any')
 license=("custom:${pkgname}")
@@ -32,7 +32,7 @@ package() {
 # Code
     install -D -m0755 ${startdir}/bin/*.pl -t ${pkgdir}/ubos/share/${pkgname}/bin/
 
-    rsync --quiet --archive --exclude '.git*' ${startdir}/src/Shaarli/* ${pkgdir}/ubos/share/${pkgname}/web
+    rsync --quiet --archive --exclude '.git*' ${startdir}/src/Shaarli/{*,.htaccess} ${pkgdir}/ubos/share/${pkgname}/web
 
 # License
     install -D -m0644 ${srcdir}/Shaarli/COPYING -t ${pkgdir}/usr/share/licenses/${pkgname}/

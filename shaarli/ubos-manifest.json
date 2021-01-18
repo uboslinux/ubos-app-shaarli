@@ -31,7 +31,8 @@
                         "plugins",
                         "shaarli_version.php",
                         "tpl",
-                        "vendor"
+                        "vendor",
+                        ".htaccess"
                     ],
                     "source" : "web/$1"
                 },
