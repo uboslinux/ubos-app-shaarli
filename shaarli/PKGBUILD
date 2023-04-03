@@ -2,8 +2,8 @@ developer=https://github.com/shaarli
 url=${developer}
 maintainer=http://indiecomputing.com/
 pkgname=$(basename $(pwd))
-pkgver=0.12.1
-pkgrel=4
+pkgver=0.12.2
+pkgrel=1
 pkgdesc="Personal, minimalist, super-fast, bookmarking service"
 arch=('any')
 license=("custom:${pkgname}")
@@ -13,7 +13,7 @@ depends=('perl-digest-sha1') # This dependency is only needed until
                              # is fixed
 releasepage=('https://github.com/shaarli/Shaarli/releases')
 options=('!strip')
-sha512sums=('3989823136ddbaaec7d2beb56b24c855e7b6ab38a1571374a572f2cdcb4a1a18cbc8595b05dfc483f67723c9067ca1d65f82a15085958bb28aa1ab0e2c79c0cd')
+sha512sums=('be95e1d4d38a08da5469844de02f43a46ef18470194649a03714c9cb8fffe2dcd9052a80eef3bda90bc5c2de4ae323c9b81c8b15048ea3e19d46f1af6b662440')
 
 package() {
 # Manifest
